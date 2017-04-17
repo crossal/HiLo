@@ -6,7 +6,11 @@ public class Card implements Comparable<Card> {
 	
 	public Card(Suit suit, int value) {
 		this.suit = suit;
-		this.value = value;
+		if (value < 1 || value > 13) {
+           throw new IllegalArgumentException("Card value should be in the range of [1-13].");
+       } else {
+    	   this.value = value;
+       }
 	}
 	
 	public Suit getSuit() {
@@ -53,5 +57,19 @@ public class Card implements Comparable<Card> {
 		default:
 			return Integer.toString(this.value);
 		}
+	}
+	
+	@Override
+	public boolean  equals (Object object) {
+	    boolean result = false;
+	    if (object == null || object.getClass() != getClass()) {
+	        result = false;
+	    } else {
+	        Card card = (Card) object;
+	        if (this.suit == card.getSuit() && this.value == card.getValue()) {
+	            result = true;
+	        }
+	    }
+	    return result;
 	}
 }

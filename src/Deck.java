@@ -25,7 +25,8 @@ public class Deck {
 	}
 	
 	public void addCard(Card card) {
-		if (cards.size() < 52) {
+		// check if card already in deck
+		if (cards.size() < 52 && !cards.contains(card)) {
 			cards.add(card);
 		}
 	}
